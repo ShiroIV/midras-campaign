@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    volumes:
+      - backend-data:/app/data
+      - backend-uploads:/app/uploads
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - PORT=3001
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend-data:
+  backend-uploads:
