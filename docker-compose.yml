@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    build: ./backend
+    image: ghcr.io/shirov4/midras-campaign/backend:latest
     ports:
       - "3001:3001"
     volumes:
@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    image: ghcr.io/shirov4/midras-campaign/frontend:latest
     ports:
       - "80:80"
     depends_on:
